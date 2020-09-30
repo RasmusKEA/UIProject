@@ -16,6 +16,11 @@ public class InitialController {
         return "index.html";
     }
 
+    @GetMapping("/index")
+    public String indexHtml(){
+        return "index.html";
+    }
+
     @GetMapping("/about")
     public String about(){
         return "about.html";
@@ -38,15 +43,10 @@ public class InitialController {
         String phone = wr.getParameter("tlfnr");
         String email = wr.getParameter("email");
         String text = wr.getParameter("text");
-        //lav en model ud af den data vi får fra webrequest objektet (wr)
-        //Constructor-initialisering new Person (s,g,k,k)
-        //Tilføj personen til et register: arrayliste eller en fil
-        //Evt send personen en mail vi kalder en mailservice, der sender en mail
-        //redireect til en anden side
+
         MailModel mm = new MailModel(name,address,phone,email,text);
-        System.out.println(mm);
         MailService mail = new MailService();
-       // mail.sendMail();
+        mail.sendMail(mm.getMail());
         return "redirect:/";
     }
 }

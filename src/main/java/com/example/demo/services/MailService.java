@@ -6,7 +6,7 @@ import javax.mail.internet.*;
 
 public class MailService {
 
-    public void sendMail(){
+    public void sendMail(String recipient){
         System.out.println("prepare msg");
         Properties prop = new Properties();
 
@@ -17,7 +17,6 @@ public class MailService {
 
         String myAccount = "degroennekokke@gmail.com";
         String myPassword = "groenkok1";
-        String recipient = "degroennekokke@gmail.com";
 
         Session session = Session.getInstance(prop, new Authenticator() {
             @Override
@@ -41,8 +40,8 @@ public class MailService {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(myAccount));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
-            message.setSubject("test mail");
-            message.setText("mere test");
+            message.setSubject("De Grønne Kokke - Vi har modtaget din information");
+            message.setText("Hej,\nVi har modtaget din kontaktinformation og kontakter dig hurtigst muligt!");
             return message;
         } catch (MessagingException e) {
             e.printStackTrace();
